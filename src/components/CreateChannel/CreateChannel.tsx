@@ -1,18 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Avatar, useChatContext } from 'stream-chat-react';
+import { useChatContext } from 'stream-chat-react';
 import type { UserResponse } from 'stream-chat';
 
 import './CreateChannel.css';
-
-const UserResult = ({ user }) => (
-  <li className='messaging-create-channel__user-result'>
-    <Avatar image={user.image} name={user.name} />
-    {user.online && <div className='messaging-create-channel__user-result-online' />}
-    <div className='messaging-create-channel__user-result__details'>
-      <span>{user.name}</span>
-    </div>
-  </li>
-);
 
 type Props = {
   onClose: () => void;
@@ -205,7 +195,12 @@ const CreateChannel = (props: Props) => {
                     onClick={() => addUser(user)}
                     key={user.id}
                   >
-                    <UserResult user={user} />
+                    <li className='messaging-create-channel__user-result'>
+                      {user.online && <div className='messaging-create-channel__user-result-online'/>}
+                      <div className='messaging-create-channel__user-result__details'>
+                        <span>{user.name}</span>
+                      </div>
+                    </li>
                   </div>
                 ))}
               </div>

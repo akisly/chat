@@ -3,9 +3,9 @@ import { username } from 'username';
 import CustomChat from "@/components/Chat/Chat";
 
 export default async function Home() {
-  const api_key = process.env.STREAM_KEY;
-  const api_secret = process.env.STREAM_SECRET;
-  const user_id = await username();
+  const api_key = process.env.STREAM_KEY as string;
+  const api_secret = process.env.STREAM_SECRET as string;
+  const user_id = await username() as string;
 
   const serverClient = StreamChat.getInstance(api_key, api_secret);
   const token = serverClient.createToken(user_id);

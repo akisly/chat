@@ -14,7 +14,7 @@ import {
 import CreateChannel from "@/components/CreateChannel/CreateChannel";
 import 'stream-chat-react/dist/css/v2/index.css';
 
-const CustomChat = ({ apiKey, token, userId }) => {
+const CustomChat = ({ apiKey, token, userId }: { apiKey: string, token: string, userId: string }) => {
   const client = useCreateChatClient({
     apiKey,
     tokenOrProvider: token,

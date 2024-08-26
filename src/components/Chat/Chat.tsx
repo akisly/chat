@@ -18,7 +18,7 @@ const CustomChat = ({ apiKey, token, userId }) => {
   const client = useCreateChatClient({
     apiKey,
     tokenOrProvider: token,
-    userData: { id: userId, name: 'John test' },
+    userData: { id: userId, name: userId },
   });
 
   if (!client) return <div>Loading...</div>;

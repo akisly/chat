@@ -13,13 +13,19 @@ import {
 } from 'stream-chat-react';
 import CreateChannel from "@/components/CreateChannel/CreateChannel";
 import 'stream-chat-react/dist/css/v2/index.css';
+import { useEffect } from "react";
+import { create } from "@/app/actions";
 
-const CustomChat = ({ apiKey, token, userId }: { apiKey: string, token: string, userId: string }) => {
+const CustomChat = ({ apiKey, token, userId, username }: { apiKey: string, token: string, userId: string, username?: string }) => {
   const client = useCreateChatClient({
     apiKey,
     tokenOrProvider: token,
-    userData: { id: userId, name: userId },
+    userData: { id: userId, name: username },
   });
+
+  useEffect(() => {
+    create(JSON.stringify({ userId, username }));
+  }, [])
 
   if (!client) return <div>Loading...</div>;
 
@@ -28,6 +34,7 @@ const CustomChat = ({ apiKey, token, userId }: { apiKey: string, token: string, 
 
   return (
     <Chat client={client}>
+      <div>{client.user?.name}</div>
       <ChannelList filters={filters} options={options} />
       <CreateChannel onClose={() => {}} toggleMobile={() => {}} />
       <Channel>
